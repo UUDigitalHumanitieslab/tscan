@@ -190,13 +190,13 @@ void structStats::wordDifficultiesToCSV( ostream& os ) const {
 }
 
 void structStats::compoundHeader( ostream& os ) const {
-  os << "Samenst_d,Samenst_p,Samenst3_d,Samenst3_p,";
-  os << "Let_per_wrd_nw,Let_per_wrd_nsam,Let_per_wrd_sam,";
-  os << "Let_per_wrd_hfdwrd,Let_per_wrd_satwrd,";
-  os << "Let_per_wrd_nw_corr,Let_per_wrd_corr,";
-  os << "Wrd_freq_log_nw,Wrd_freq_log_ong_nw,Wrd_freq_log_sam_nw,";
-  os << "Wrd_freq_log_hfdwrd,Wrd_freq_log_satwrd,Wrd_freq_log_(hfd_sat),";
-  os << "Wrd_freq_log_nw_corr,Wrd_freq_log_corr,";
+  os << "Samenst_d,Samenst_p,Samenst3_d,Samenst3_p,"; 
+  os << "Let_per_wrd_nw,Let_per_wrd_nsam,Let_per_wrd_sam,"; 
+  os << "Let_per_wrd_hfdwrd,Let_per_wrd_satwrd,"; 
+  os << "Let_per_wrd_nw_corr,Let_per_wrd_corr,"; 
+  os << "Wrd_freq_log_nw,Wrd_freq_log_ong_nw,Wrd_freq_log_sam_nw,"; 
+  os << "Wrd_freq_log_hfdwrd,Wrd_freq_log_satwrd,Wrd_freq_log_(hfd_sat),"; 
+  os << "Wrd_freq_log_nw_corr,Wrd_freq_log_corr,"; 
   os << "Wrd_freq_log_zn_corr,";
   os << "Wrd_freq_log_corr_zonder_abw,";
   os << "Wrd_freq_log_zn_corr_zonder_abw,";
@@ -946,16 +946,15 @@ void structStats::miscToCSV( ostream& os ) const {
   os << "\"" << escape_quotes(toStringCounter(my_classification)) << "\",";
 
   /* LINT scores */
-  double wrd_freq_log_zn_corr = proportion( word_freq_log_n_corr, contentCnt-nameCnt).p;
+  double wrd_freq_log_zn_corr = proportion(word_freq_log_n_corr_strict, contentStrictCnt-nameCnt).p;
   double bijv_bep_dz_zbijzin = proportion( max(0, npModCnt - betrCnt), correctedClauseCnt).p ;
   double alg_nw_d = density( generalNounCnt, wordCnt ).d;
-  double al_max = ( parseFailCnt > 0 ) ? NAN : proportion( clauseCnt, sentCnt ).p;
   double Inhwrd_dz_zonder_abw = proportion( contentStrictInclCnt, correctedClauseCnt ).p;
   double Conc_nw_ruim_p = proportion( broadNounCnt, nounCnt+nameCnt-uncoveredNounCnt ).p;
 
   double lint_score_1 = -14.857
     +  19.487 * wrd_freq_log_zn_corr 
-    - -5.965 * bijv_bep_dz_zbijzin 
+    - 5.965 * bijv_bep_dz_zbijzin 
     - 0.093 * alg_nw_d 
     - 0.995 * al_max ;
   double lint_score_2 = -9.925 
