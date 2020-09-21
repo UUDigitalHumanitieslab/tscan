@@ -921,7 +921,8 @@ void structStats::miscHeader( ostream& os ) const {
   os << "Entropie_fwd,Entropie_fwd_norm,Perplexiteit_fwd,Perplexiteit_fwd_norm,";
   os << "Log_prob_bwd,Log_prob_bwd_inhwrd,Log_prob_bwd_zn,Log_prob_bwd_inhwrd_zn,";
   os << "Entropie_bwd,Entropie_bwd_norm,Perplexiteit_bwd,Perplexiteit_bwd_norm,";
-  os << "Eigen_classificatie";
+  os << "Eigen_classificatie,";
+  os << "LiNT_score1,LiNT_score2";
 }
 
 void structStats::miscToCSV( ostream& os ) const {
@@ -942,7 +943,29 @@ void structStats::miscToCSV( ostream& os ) const {
   os << proportion( perplexity_bwd, sentCnt ) << ",";
   os << proportion( perplexity_bwd_norm, sentCnt ) << ",";
 
-  os << "\"" << escape_quotes(toStringCounter(my_classification)) << "\"";
+  os << "\"" << escape_quotes(toStringCounter(my_classification)) << "\",";
+
+  /* LINT scores */
+  double wrd_freq_log_zn_corr = proportion( word_freq_log_n_corr, contentCnt-nameCnt).p;
+  double bijv_bep_dz_zbijzin = proportion( max(0, npModCnt - betrCnt), correctedClauseCnt).p ;
+  double alg_nw_d = density( generalNounCnt, wordCnt ).d;
+  double al_max = ( parseFailCnt > 0 ) ? NAN : proportion( clauseCnt, sentCnt ).p;
+  double Inhwrd_dz_zonder_abw = proportion( contentStrictInclCnt, correctedClauseCnt ).p;
+  double Conc_nw_ruim_p = proportion( broadNounCnt, nounCnt+nameCnt-uncoveredNounCnt ).p;
+
+  double lint_score_1 = -14.857
+    +  19.487 * wrd_freq_log_zn_corr 
+    - -5.965 * bijv_bep_dz_zbijzin 
+    - 0.093 * alg_nw_d 
+    - 0.995 * al_max ;
+  double lint_score_2 = -9.925 
+    + 18.264 * wrd_freq_log_zn_corr 
+    - 3.766 * Inhwrd_dz_zonder_abw 
+    + 13.796 * Conc_nw_ruim_p 
+    - 1.126 * al_max;
+
+  os << lint_score_1 << ",";
+  os << lint_score_2 << ",";
 }
 
 /**************
