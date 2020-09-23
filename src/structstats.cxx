@@ -922,7 +922,7 @@ void structStats::miscHeader( ostream& os ) const {
   os << "Log_prob_bwd,Log_prob_bwd_inhwrd,Log_prob_bwd_zn,Log_prob_bwd_inhwrd_zn,";
   os << "Entropie_bwd,Entropie_bwd_norm,Perplexiteit_bwd,Perplexiteit_bwd_norm,";
   os << "Eigen_classificatie,";
-  os << "LiNT_score1,LiNT_score2";
+  os << "LiNT_score1,LiNT_niveau1,LiNT_score2,LiNT_niveau2";
 }
 
 void structStats::miscToCSV( ostream& os ) const {
@@ -963,8 +963,26 @@ void structStats::miscToCSV( ostream& os ) const {
     + 13.796 * Conc_nw_ruim_p 
     - 1.126 * al_max;
 
+  double level1 = 66.04084321475625;
+  double level2 = 47.387387387387375;
+  double level3 = 39.02891030392883;
+
+  int lint_niveau_1;
+  if (lint_score_1 > level1) { lint_niveau_1 = 1; }
+  else if (lint_score_1 > level2) { lint_niveau_1 = 2; }
+  else if (lint_score_1 > level3) { lint_niveau_1 = 3; }
+  else { lint_niveau_1 = 4; }
+
+  int lint_niveau_2;
+  if (lint_score_2 > level1) { lint_niveau_2 = 1; }
+  else if (lint_score_2 > level2) { lint_niveau_2 = 2; }
+  else if (lint_score_2 > level3) { lint_niveau_2 = 3; }
+  else { lint_niveau_2 = 4; }
+  
   os << lint_score_1 << ",";
+  os << lint_niveau_1 << ",";
   os << lint_score_2 << ",";
+  os << lint_niveau_2 << ",";
 }
 
 /**************
