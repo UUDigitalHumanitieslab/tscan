@@ -305,15 +305,15 @@ void structStats::sentDifficultiesToCSV( ostream& os ) const {
   }
   else {
     os << proportion( betrCnt, sentCnt ) << ",";
-    os << proportion( bijwCnt, sentCnt ) << ",";
-    os << proportion( complCnt, sentCnt ) << ",";
-    os << proportion( bijzinCnt, sentCnt ) << ",";
-    os << proportion( mvFinInbedCnt, sentCnt ) << ",";
-    os << proportion( infinComplCnt, sentCnt ) << ",";
-    os << proportion( bijzinCnt + infinComplCnt, sentCnt ) << ",";
-    os << proportion( mvInbedCnt, sentCnt ) << ",";
-    os << proportion( losBetrCnt, sentCnt ) << ",";
-    os << proportion( losBijwCnt, sentCnt ) << ",";
+    os << proportion( bijwCnt, sentCnt ) << ","; // Bijw_bijzin_per_zin
+    os << proportion( complCnt, sentCnt ) << ","; //Compl_bijzin_per_zin
+    os << proportion( bijzinCnt, sentCnt ) << ","; //Fin_bijzin_per_zin
+    os << proportion( mvFinInbedCnt, sentCnt ) << ","; //Mv_fin_inbed_per_zin
+    os << proportion( infinComplCnt, sentCnt ) << ","; // Infin_compl_per_zin
+    os << proportion( bijzinCnt + infinComplCnt, sentCnt ) << ","; //Bijzin_per_zin
+    os << proportion( mvInbedCnt, sentCnt ) << ","; //Mv_inbed_per_zin
+    os << proportion( losBetrCnt, sentCnt ) << ","; //Betr_bijzin_los
+    os << proportion( losBijwCnt, sentCnt ) << ","; //Bijw_compl_bijzin_los
   }
 
   if ( parseFailCnt > 0 ) {
