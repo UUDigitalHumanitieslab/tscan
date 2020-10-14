@@ -190,13 +190,13 @@ void structStats::wordDifficultiesToCSV( ostream& os ) const {
 }
 
 void structStats::compoundHeader( ostream& os ) const {
-  os << "Samenst_d,Samenst_p,Samenst3_d,Samenst3_p,"; 
-  os << "Let_per_wrd_nw,Let_per_wrd_nsam,Let_per_wrd_sam,"; 
-  os << "Let_per_wrd_hfdwrd,Let_per_wrd_satwrd,"; 
-  os << "Let_per_wrd_nw_corr,Let_per_wrd_corr,"; 
-  os << "Wrd_freq_log_nw,Wrd_freq_log_ong_nw,Wrd_freq_log_sam_nw,"; 
-  os << "Wrd_freq_log_hfdwrd,Wrd_freq_log_satwrd,Wrd_freq_log_(hfd_sat),"; 
-  os << "Wrd_freq_log_nw_corr,Wrd_freq_log_corr,"; 
+  os << "Samenst_d,Samenst_p,Samenst3_d,Samenst3_p,";
+  os << "Let_per_wrd_nw,Let_per_wrd_nsam,Let_per_wrd_sam,";
+  os << "Let_per_wrd_hfdwrd,Let_per_wrd_satwrd,";
+  os << "Let_per_wrd_nw_corr,Let_per_wrd_corr,";
+  os << "Wrd_freq_log_nw,Wrd_freq_log_ong_nw,Wrd_freq_log_sam_nw,";
+  os << "Wrd_freq_log_hfdwrd,Wrd_freq_log_satwrd,Wrd_freq_log_(hfd_sat),";
+  os << "Wrd_freq_log_nw_corr,Wrd_freq_log_corr,";
   os << "Wrd_freq_log_zn_corr,";
   os << "Wrd_freq_log_corr_zonder_abw,";
   os << "Wrd_freq_log_zn_corr_zonder_abw,";
@@ -949,8 +949,8 @@ void structStats::miscToCSV( ostream& os ) const {
   double wrd_freq_log_zn_corr = proportion(word_freq_log_n_corr_strict, contentStrictCnt-nameCnt).p;
   double bijv_bep_dz_zbijzin = proportion( max(0, npModCnt - betrCnt), correctedClauseCnt).p ;
   double alg_nw_d = density( generalNounCnt, wordCnt ).d;
-  double Inhwrd_dz_zonder_abw = proportion( contentStrictInclCnt, correctedClauseCnt ).p;
-  double Conc_nw_ruim_p = proportion( broadNounCnt, nounCnt+nameCnt-uncoveredNounCnt ).p;
+  double inhwrd_dz_zonder_abw = proportion( contentStrictInclCnt, correctedClauseCnt ).p;
+  double conc_nw_ruim_p = proportion( broadNounCnt, nounCnt+nameCnt-uncoveredNounCnt ).p;
 
   double lint_score_1 = -14.857
     +  19.487 * wrd_freq_log_zn_corr 
@@ -959,30 +959,30 @@ void structStats::miscToCSV( ostream& os ) const {
     - 0.995 * al_max ;
   double lint_score_2 = -9.925 
     + 18.264 * wrd_freq_log_zn_corr 
-    - 3.766 * Inhwrd_dz_zonder_abw 
-    + 13.796 * Conc_nw_ruim_p 
+    - 3.766 * inhwrd_dz_zonder_abw 
+    + 13.796 * conc_nw_ruim_p 
     - 1.126 * al_max;
 
   double level1 = 66.04084321475625;
   double level2 = 47.387387387387375;
   double level3 = 39.02891030392883;
 
-  int lint_niveau_1;
-  if (lint_score_1 > level1) { lint_niveau_1 = 1; }
-  else if (lint_score_1 > level2) { lint_niveau_1 = 2; }
-  else if (lint_score_1 > level3) { lint_niveau_1 = 3; }
-  else { lint_niveau_1 = 4; }
+  int lint_level_1;
+  if (lint_score_1 > level1) { lint_level_1 = 1; }
+  else if (lint_score_1 > level2) { lint_level_1 = 2; }
+  else if (lint_score_1 > level3) { lint_level_1 = 3; }
+  else { lint_level_1 = 4; }
 
-  int lint_niveau_2;
-  if (lint_score_2 > level1) { lint_niveau_2 = 1; }
-  else if (lint_score_2 > level2) { lint_niveau_2 = 2; }
-  else if (lint_score_2 > level3) { lint_niveau_2 = 3; }
-  else { lint_niveau_2 = 4; }
+  int lint_level_2;
+  if (lint_score_2 > level1) { lint_level_2 = 1; }
+  else if (lint_score_2 > level2) { lint_level_2 = 2; }
+  else if (lint_score_2 > level3) { lint_level_2 = 3; }
+  else { lint_level_2 = 4; }
   
   os << lint_score_1 << ",";
-  os << lint_niveau_1 << ",";
+  os << lint_level_1 << ",";
   os << lint_score_2 << ",";
-  os << lint_niveau_2 << ",";
+  os << lint_level_2 << ",";
 }
 
 /**************
