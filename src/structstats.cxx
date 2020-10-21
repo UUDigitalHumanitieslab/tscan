@@ -963,9 +963,9 @@ void structStats::miscToCSV( ostream& os ) const {
     + 13.796 * conc_nw_ruim_p 
     - 1.126 * al_max;
 
-  double level1 = 39.02891030392883;
-  double level2 = 47.387387387387375;
-  double level3 = 66.04084321475625;
+  double level1 = 34;
+  double level2 = 52.61;
+  double level3 = 61;
 
   int lint_level_1;
   if (lint_score_1 < level1) { lint_level_1 = 1; }
