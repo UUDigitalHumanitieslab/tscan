@@ -515,7 +515,7 @@ void sentStats::resolveRelativeClauses( xmlDoc *alpDoc ) {
   string cpConjPath = ".//node[@rel='mod' and @cat='conj']//node[@rel='cnj' and @cat='cp']" + hasDirectFiniteVerbSv1;
   cpNodes.merge(TiCC::FindNodes(alpDoc, cpConjPath));
   string cpNuclAExtra = "(@cat!='cp' or not(descendant::node[@rel='cnj' and @cat='ssub']))";
-  string nuclPath = "(preceding-sibling::node[@rel='nucl'])";
+  string nuclPath = "(following-sibling::node[@rel='nucl'])"; 
   string cpNuclAPath = ".//node[(@cat='sv1' or @cat='cp') and " + nuclPath + " and " + cpNuclAExtra + "]";
   cpNodes.merge(TiCC::FindNodes(alpDoc, cpNuclAPath));
   string cpNuclBPath = ".//node[@rel='sat' and " + nuclPath + "]/node[@rel='cnj' and @cat='sv1']";
