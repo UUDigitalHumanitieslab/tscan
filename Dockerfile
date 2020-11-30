@@ -4,10 +4,8 @@ COPY docker/ /deployment/
 WORKDIR /deployment
 RUN bash config.sh
 
-# TODO: from source
 WORKDIR /usr/local/src
-RUN git clone https://github.com/UUDigitalHumanitieslab/tscan.git
-COPY data/ /usr/local/src/tscan/data
+COPY . /usr/local/src/tscan
 
 WORKDIR /deployment
 RUN bash add-alpino.sh

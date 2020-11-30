@@ -1,18 +1,22 @@
 # modified version of main.yml 6f9a1c6da118c2d891841de09a1d367c0fba0741
 ---
-    - name: Installing T-scan
-      include_role:
-        name: lamachine-git-autoconf
-      vars:
-          package:
-            repo: tscan
-            user: UUDigitalHumanitieslab
-
     - name: Detect current T-scan branch or tag
       shell: "git describe --tags || git rev-parse HEAD"
       register: current_tscan_branch_or_tag
       args:
         chdir: "{{source_path}}/tscan"
+
+    - name: Installing T-scan - {{ current_tscan_branch_or_tag.stdout }}
+      include_role:
+        name: lamachine-git-autoconf
+      vars:
+          version: custom
+          customversion:
+            tscan: "{{ current_tscan_branch_or_tag.stdout }}"
+          package:
+            ignore_git: true
+            repo: tscan
+            user: UUDigitalHumanitieslab
 
     - name: Installing T-scan webservice
       include_role:
