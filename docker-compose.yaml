@@ -4,6 +4,7 @@ services:
   tscan:
     build:
       context: .
+    restart: unless-stoppped
     ports:
       - 8830:80
       - 8820:8820
