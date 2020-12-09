@@ -10,7 +10,7 @@ from setuptools import setup
 
 setup(
     name = "tscan",
-    version = "0.9.8", #also change in ../configure.ac and ../codemeta.json!
+    version = "0.9.9", #also change in ../configure.ac and ../codemeta.json!
     author = "Martijn van der Klis, Ko van der Sloot, Maarten van Gompel",
     author_email = "m.h.vanderklis@uu.nl",
     description = ("Webservice for T-scan"),
