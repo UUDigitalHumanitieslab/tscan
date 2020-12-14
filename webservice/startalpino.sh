@@ -15,6 +15,4 @@ PROLOGMAXSIZE=${MEMLIMIT} ${ALPINO_HOME}/bin/Alpino -notk -veryfast user_max="${
  debug=1\
  end_hook=xml\
 -init_dict_p\
- batch_command=alpino_server 2> ${TMPDIR}/alpino_server.log &
-
-echo "Alpino started"
+ batch_command=alpino_server 2> ${TMPDIR}/alpino_server.log
